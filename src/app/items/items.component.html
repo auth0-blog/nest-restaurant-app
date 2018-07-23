@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+  <tr>
+    <td>Name</td>
+    <td>Price</td>
+    <td>Action</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of items"> <!--for every item in object items, create a table row-->
+    <td>{{item.name }}</td> <!--Write it's name in a column-->
+    <td>${{item.price}}</td> <!--Write it's price in a column-->
+    <td>
+      <button class="btn btn-secondary"
+              (click)="addToCart()">
+        Add to shopping cart
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
