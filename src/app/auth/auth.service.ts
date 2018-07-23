@@ -38,6 +38,7 @@ export class AuthService {
           return reject(error);
         } else if (error) {
           // explicit authentication
+          console.log(error);
           this.handleAuthentication();
           return resolve(false);
         }

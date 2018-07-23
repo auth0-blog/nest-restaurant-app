@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" href="#">{{title}}</a>
+  <button class="btn btn-primary login" *ngIf="!isAuthenticated()" (click)="login()">
+    Login
+  </button>
+  <span *ngIf="isAuthenticated()">
+    <span>
+      Logged in as:
+      <img [src]="getProfile().picture" width="40">
+      {{getProfile().name }}
+    </span>
+    <button class="btn btn-secondary" (click)="logout()">Logout</button>
+  </span>
+</nav>
