@@ -19,3 +19,32 @@
   </tr>
   </tbody>
 </table>
+<div>
+  <h3 class="col-md-12">Add a new Item</h3>
+  <form class="form-inline" (submit)="addNewItem()" [formGroup]="itemForm">
+    <div class="col-auto">
+      <input type="text"
+             class="form-control"
+             placeholder="Name"
+             formControlName="name"
+             [ngClass]="{ 'is-invalid': itemSubmitted && getItemForm.name.errors }" >
+      <div *ngIf="itemSubmitted && getItemForm.name.errors" class="invalid-feedback">
+        <div *ngIf="getItemForm.name.errors.required">Name is required</div>
+      </div>
+    </div>
+    <div class="col-auto">
+      <input type="number"
+             class="form-control"
+             placeholder="Price"
+             formControlName="price"
+             [ngClass]="{ 'is-invalid': itemSubmitted && getItemForm.price.errors }" >
+      <div *ngIf="itemSubmitted && getItemForm.price.errors" class="invalid-feedback">
+        <div *ngIf="getItemForm.price.errors.required">Price is required and must be a number</div>
+        <div *ngIf="getItemForm.price.errors.min">Must start from 0</div>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2">Add new item</button>
+    </div>
+  </form>
+</div>

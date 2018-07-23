@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from './item.interface';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-items',
@@ -15,12 +16,29 @@ export class ItemsComponent implements OnInit {
       name: 'Salad',
       price: 2
     }];
-  constructor() { }
+  itemSubmitted = false;
+  itemForm: FormGroup;
 
-  addToCart() {
-    window.alert('Added');
-  }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    // Initiating the form with the fields and the required validators
+    this.itemForm = this.formBuilder.group({
+      name: ['', Validators.required], // Name is required
+      price: ['', [Validators.required, Validators.min(0)]] // Price is required and must be a positive number
+    });
+  }
+
+  get getItemForm() {
+    return this.itemForm.controls;
+  }
+
+  addNewItem() {
+    this.itemSubmitted = true;
+    if (this.itemForm.invalid) {
+      console.log(this.itemForm);
+    } else {
+      this.items.push(this.itemForm.value);
+    }
   }
 }
