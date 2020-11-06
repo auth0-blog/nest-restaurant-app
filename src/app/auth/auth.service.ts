@@ -102,5 +102,8 @@ export class AuthService {
     // Remove tokens
     delete this._accessToken;
     delete this._idToken;
+    this._auth0Client.logout({
+      returnTo: "http://localhost:4200",
+    });
   }
 }
