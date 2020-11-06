@@ -12,7 +12,7 @@ export class ItemsService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   // creates header
-  private _authHeader(): Object {
+  private _authHeader(): object {
     return {
       headers: new HttpHeaders({ 'authorization': `Bearer ${this.auth.getAccessToken()}`})
     };

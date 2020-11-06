@@ -87,14 +87,14 @@ export class AuthService {
     }
   }
 
-  public getProfile(): Object {
+  public getProfile(): object {
     if (this._idToken) {
       const helper = new JwtHelperService();
       return helper.decodeToken(this._idToken);
     }
   }
 
-  public getAccessToken(): String {
+  public getAccessToken(): string {
     return this._accessToken;
   }
 
@@ -102,5 +102,8 @@ export class AuthService {
     // Remove tokens
     delete this._accessToken;
     delete this._idToken;
+    this._auth0Client.logout({
+      returnTo: "http://localhost:4200",
+    });
   }
 }
